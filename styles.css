@@ -1,0 +1,61 @@
+:root{
+    --white:#F7F7FF;
+    --blue:#003049;
+    --red:#D62828;
+    --yellow:#F77F00;
+    --green:#5FAD56;
+}
+
+/*font-family: 'League Spartan', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Hubballi&family=League+Spartan&display=swap');
+
+/*font-family: 'Hubballi', cursive;*/
+@import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.hidden {
+    display: none;
+}
+
+/*navbar*/
+.navbar{
+    background-color: var(--blue);
+    font-family: 'League Spartan', sans-serif;
+}
+
+.navbar-toggler-icon {
+    color:  var(--yellow);
+}
+
+.navbar a{
+    color:  var(--white);
+}
+
+
+
+/*carousel*/
+#carouselExampleIndicators .carousel-inner{
+    height: 500px;
+}
+
+
+
+
+/*footer*/
+.footer{
+    color:  var(--white);
+    background-color: var(--blue);
+}
+
+.footer a{
+    text-decoration: none;
+}
+

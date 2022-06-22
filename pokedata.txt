@@ -1,0 +1,11 @@
+Array ( 
+    [0] => stdClass Object ( [database_id] => 1 [name] => name1 [type] => electric [pokedex_id] => 1 [hp] => 11 [attack] => 11 [defense] => 11 [spattack] => 11 [spdefense] => 11 [speed] => 11 [total] => 111 ) 
+    [1] => stdClass Object ( [database_id] => 2 [name] => name2 [type] => electric [pokedex_id] => 2 [hp] => 22 [attack] => 22 [defense] => 22 [spattack] => 22 [spdefense] => 22 [speed] => 22 [total] => 222 ) 
+    [2] => stdClass Object ( [database_id] => 3 [name] => name3 [type] => electric [pokedex_id] => 3 [hp] => 33 [attack] => 33 [defense] => 33 [spattack] => 33 [spdefense] => 33 [speed] => 33 [total] => 333 ) 
+    [3] => stdClass Object ( [database_id] => 4 [name] => name4 [type] => electric [pokedex_id] => 4 [hp] => 44 [attack] => 44 [defense] => 44 [spattack] => 44 [spdefense] => 44 [speed] => 44 [total] => 444 ) 
+    [4] => stdClass Object ( [database_id] => 5 [name] => name5 [type] => electric [pokedex_id] => 5 [hp] => 55 [attack] => 55 [defense] => 55 [spattack] => 55 [spdefense] => 55 [speed] => 55 [total] => 555 ) 
+    [5] => stdClass Object ( [database_id] => 6 [name] => name6 [type] => electric [pokedex_id] => 6 [hp] => 66 [attack] => 66 [defense] => 66 [spattack] => 66 [spdefense] => 66 [speed] => 66 [total] => 666 ) 
+    [6] => stdClass Object ( [database_id] => 7 [name] => name7 [type] => electric [pokedex_id] => 7 [hp] => 77 [attack] => 77 [defense] => 77 [spattack] => 77 [spdefense] => 77 [speed] => 77 [total] => 777 ) 
+    [7] => stdClass Object ( [database_id] => 8 [name] => name8 [type] => electric [pokedex_id] => 8 [hp] => 88 [attack] => 88 [defense] => 88 [spattack] => 88 [spdefense] => 88 [speed] => 88 [total] => 888 ) 
+    [8] => stdClass Object ( [database_id] => 9 [name] => name9 [type] => electric [pokedex_id] => 9 [hp] => 99 [attack] => 99 [defense] => 99 [spattack] => 99 [spdefense] => 99 [speed] => 99 [total] => 999 ) 
+) 
