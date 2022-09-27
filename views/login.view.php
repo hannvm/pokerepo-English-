@@ -6,14 +6,14 @@
 
             <h1 class="py-3">Login</h1>
 
-            <form class="my-3 text-center" action='includes/login.inc.php' method='post'>
+            <form class="my-3 text-center" action='admin/login.inc.php' method='post'>
                 <div class="mb-3 text-start">
                     <label for="loginemail" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="loginemail" aria-describedby="emailHelp">
+                    <input type="email" class="form-control" name="loginemail" aria-describedby="emailHelp">
                 </div>
                 <div class="mb-3 text-start">
                     <label for="loginpwd" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="loginpwd">
+                    <input type="password" class="form-control" name="loginpwd">
                 </div>
                 <div class="mb-3 form-check text-start">
                     <input type="checkbox" class="form-check-input" id="logincheckbox">

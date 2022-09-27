@@ -19,7 +19,7 @@
       <span class="hidden">Pokemon are OK</span>
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+      <span class="navbar-toggler-icon">Menu</span>
     </button>
     <div class="collapse navbar-collapse" id="navbarToggle">
       <ul class="navbar-nav ms-auto">

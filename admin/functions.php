@@ -6,7 +6,9 @@
 
 	//POKEDEX FUNCTIONS
 	//returns all pokemon data from the db
-	function getPokeData($dsn,$user,$pass,$totalPokeData){
+	function getPokeData($dsn,$user,$pass){
+
+		$totalPokeData;
 
 		$pdo = new PDO($dsn, $user, $pass);		//create a PDO instance
 		$pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);	//set default so data is returned as an object, can be overridden
@@ -21,9 +23,8 @@
 		return $totalPokeData;                  //return all the data as a multidimensional array
 	};
 
-
 	function printPokedexItem($pokemon) { ?>
-		<div class="col">
+		<div class="align-self-center col-lg-4 mb-3">
 			<div class="card" style="width: 18rem;">
 				<img src="img/pikachu.webp" class="card-img-top" alt="...">
 				<div class="card-body text-center">
@@ -115,103 +116,91 @@
 	<?php };
 
 
+
 	//SIGNUP FUNCTIONS
-	function checkEmptyFields($fname, $lname, $email, $pwd, $pwdrepeat) {
-		$result;	//will equal true if there are empty fields, and false if all have data
-		if (empty($fname) || empty($lname) || empty($email) || empty($pwd) || empty($pwdrepeat)) {
-			$result = true;
-		} else {
-			$result = false;
-		}
-	};
-
-	function checkUsernameExists($conn, $username) {
-		$sql = "SELECT * FROM users WHERE username = ?;";	//sql statement
-		$stmt = mysqli_stmt_init($conn);	//prepared stmt for security
-		if(!mysqli_stmt_prepare($stmt, $sql)){
-			header("location: ../signup.php?error=stmterror"); //send the user back to signup page with info to load error message
-			exit();
-		}
-
-		mysqli_stmt_bind_param($stmt, "s", $username);		//fill in variable data to sql code
-		mysqli_stmt_execute($stmt);							//execute the statement
-		$resultData = mysqli_stmt_get_result($stmt);		//get the data from stmt
-
-		if($row = mysqli_fetch_assoc()) {					//assigns any data found to $row
-			return $row;									//return data if found												
-		} else {
-			$result = false;
-			return $result;								//returns false if data doesn't match
-		}
-
-		mysqli_stmt_close($stmt);
-	};
-
-	// write universal function to check if something exists where you pass in the column you're checking as a param.
-
-	//attempt at universal check function - not done 
-	function checkSomethingExists($conn, $searchItem, $column) {
-		$sql = "SELECT * FROM" . $column . "WHERE username = ?;";
-		$stmt = mysqli_stmt_init($conn);	//prepared stmt for security
-		if(!mysqli_stmt_prepare($stmt, $sql)){
-			header("location: ../signup.php?error=stmterror"); //send the user back to signup page with info to load error message
-			exit();
-		}
-
-		mysqli_stmt_bind_param($stmt, "s", $searchItem);		//fill in variable data to sql code
-		mysqli_stmt_execute($stmt);							//execute the statement
-
-		$resultData = mysqli_stmt_get_result($stmt);		//get the data from stmt
-
-		if($row = mysqli_fetch_assoc()) {					//assigns any data found to $row
-			return $row;									//return data if found												
-		} else {
-			$result = false;
-			return $result;								//returns false if data doesn't match
-		}
-
-		mysqli_stmt_close($stmt);
-	};
-
-	function checkUsernameValid($username) {
+	function emptyInputSignup($username, $fname, $lname, $email, $supwd, $supwdrep) {
 		$result;
-		if (!preg_match("/^[a-zA-Z0-9]*$/", $username)) {
+		if (empty($username) || empty($fname) || empty($lname) || empty($email) || empty($supwd) || empty($supwdrep)){
 			$result = true;
 		} else {
-			$result =false;
-		}
-		return $result;
-	};
-
-	function checkNameValid($name) {
-		$result;
-		if (!preg_match("^[\w'\-,.][^0-9_!¡??¿/\\+=@#$%&*(){}|~<>;:[\]]{2,}$", $name)) {
-			$result = true;
-		} else {
-			$result =false;
+			$result = false;
 		};
 		return $result;
 	};
 
-	function checkEmailValid($email) {
+	//check if username is valid characters
+	function invalidUsername($username) {
 		$result;
-		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+		if (preg_match("^[a-zA-Z0-9]+([._]?[a-zA-Z0-9]+)*$", $username)){	//Dani has username outside of preg_match brackets
 			$result = true;
 		} else {
-			$result =false;
-		}
+			$result = false;
+		};
 		return $result;
 	};
 
-	function checkPasswordMatch($pwd, $pwdrepeat) {
+	//check if email is a valid email
+	function invalidEmail($email) {	
 		$result;
-		if ($pwd !== $pwdrepeat) {
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)){	
 			$result = true;
 		} else {
-			$result =false;
-		}
+			$result = false;
+		};
 		return $result;
-	};	
+	};
+
+	//check if passwords match
+	function pwdMatch($supwd, $supwdrep) {
+		$result;
+		if ($supwd !== $supwdrep){	
+			$result = true;
+		} else {
+			$result = false;
+		};
+		return $result;
+	};
+
+	//checks if username or email are alreday registered in the database
+	function userExists($conn, $username, $email) {
+		$sql = "SELECT * FROM users WHERE username = ? OR email == ?;";
+		$stmt = mysqli_stmt_init($conn); //prepared statment for security (doesn't allow user to inject code)
+		if(!mysqli_stmt_prepare($stmt, $sql)){
+			header("location: ../signup.php?error=stmtfailuserexists");
+            exit();
+		}
+		
+		mysqli_stmt_bind_param($stmt, "ss", $username, $email); //bind params with statement, ss is quantity of params
+		mysqli_stmt_execute($stmt); //execute statement
+
+		$resultData = mysqli_stmt_get_result();	//results of sql statement
+
+		if($row = mysqli_fetch_assoc()) {			//fetch data as associative array. If data, return true and assign data to variable $row
+			return $row;							//returns data from database
+		} else {
+			$result = false; 	//no data, return as false
+			return $result;
+		};
+
+		mysqli_stmt_close($stmt); 	// close prepared statement
+
+	};
+
+	//function to create user
+	function createUser($conn, $username, $fname, $lname, $email, $pwd) {
+		$sql = "INSERT INTO users(username, fname, lname, email, password) VALUES(?, ?, ?, ?, ?)";
+		$stmt = mysqli_stmt_init($conn, $sql); // prepared statment for security (doesn't allow user to inject code)
+		if(!mysqli_stmt_prepare($stmt, $sql)){	// if statment doesn't work show error message
+			header("location: ../signup.php?error=stmtfailsignupuser");
+            exit();
+		};
+
+		$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);	// hash password
+
+		mysqli_stmt_bind_param($stmt, "sssss", $username, $fname, $lname, $email, $pwd); // bind params with statement, ss is quantity of params
+		mysqli_stmt_execute($stmt); // execute statement
+		mysqli_stmt_close($stmt); 	// close prepared statement
+
+	};
 
 
-?>

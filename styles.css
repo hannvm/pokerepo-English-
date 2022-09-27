@@ -1,8 +1,10 @@
+/**/
+
 :root{
     --white:#F7F7FF;
-    --blue:#003049;
-    --red:#D62828;
-    --yellow:#F77F00;
+    --blue:#3B4CCA;
+    --red:#CC0000;
+    --yellow:#FFDE00;
     --green:#5FAD56;
 }
 
@@ -12,10 +14,41 @@
 /*font-family: 'Hubballi', cursive;*/
 @import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
 
+/*font-family: 'Noto Sans', sans-serif;*/
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@200;400;500&display=swap');
+
+/*font-family: 'Bebas Neue'*/
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
 *{
     margin: 0;
     padding: 0;
 }
+
+/*fonts*/
+.league-spartan {
+    font-family: 'League Spartan', sans-serif;
+}
+
+.hubballi {
+    font-family: 'Hubbali', cursive;
+}
+
+.noto-sans {
+    font-family: 'Noto Sans', sans-serif;
+}
+
+.bebas-neue {
+    font-family: 'Bebas Neue', cursive;
+}
+
+.anton {
+    font-family: 'Anton', sans-serif;
+}
+
+
 
 body {
     min-height: 100vh;
@@ -32,7 +65,8 @@ body {
 }
 
 .navbar-toggler-icon {
-    color:  var(--yellow);
+    color:  var(--white);
+    z-index: 100;
 }
 
 .navbar a{
@@ -40,13 +74,67 @@ body {
 }
 
 
+/* Index Page */
 
-/*carousel*/
-#carouselExampleIndicators .carousel-inner{
-    height: 500px;
+/*hero*/
+.hero-banner{
+    background-color: #cc0000;
+}
+
+.hero-banner h1 {
+    font-size: 48px;
+}
+.hero-banner .btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 9;
+}
+
+.hero-banner .btn-blue:before {
+    content: "";
+    background: var(--red);
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.hero-banner .btn-notblue:before {
+    content: "";
+    background: var(--blue);
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -1;
+}
+
+.hero-banner .btn:hover:before {
+    width: 100%;
+}
+
+.hero-buttons{
+    display: flex;
+    flex-direction: column;
 }
 
 
+.hero-text {
+    color:  var(--yellow);
+}
+
+
+
+
+
+
+
+
+/*articles*/
+.btn-blue{
+    background: var(--blue);
+}
 
 
 /*footer*/
